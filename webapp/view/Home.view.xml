@@ -1,0 +1,123 @@
+<mvc:View
+	controllerName="openui5-calendar.controller.Home"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:unified="sap.ui.unified"
+    xmlns:f="sap.f"
+    xmlns:card="sap.f.cards" >
+    <App id="app" height="99.5%">
+        <Page showHeader="false">
+            <content>
+                <Panel headerText="Filtri" expandable="true" backgroundDesign="Transparent" >
+                    <HBox width="100%">
+                        <Input type="Text"
+                            value=""
+                            id="filterProgetto"
+                            placeholder="Filtra Progetto"
+                            showValueHelp="true"
+                            valueHelpOnly="true"
+                            valueHelpRequest=".onValueHelpFilter"
+                            class="sapUiSmallMarginBottom"
+                            width="100%"/>
+                        <Input type="Text"
+                            value=""
+                            id="filterCompetenceCenter"
+                            placeholder="Filtra competence center"
+                            showValueHelp="true"
+                            valueHelpOnly="true"
+                            valueHelpRequest=".onValueHelpFilter"
+                            class="sapUiSmallMarginBottom"
+                            width="100%"/>
+                        <Input type="Text"
+                            value=""
+                            id="filterRisorsa"
+                            placeholder="Filtra risorsa"
+                            showValueHelp="true"
+                            valueHelpOnly="true"
+                            valueHelpRequest=".onValueHelpFilter"
+                            class="sapUiSmallMarginBottom"
+                            width="100%"/>
+                    </HBox>
+                </Panel>
+                <ScrollContainer
+                	height="95%"
+                    vertical="true"
+		            width="100%">
+                    <PlanningCalendar 
+                        id="PC1"
+                        height="95%"
+                        viewKey="1_Month"
+                        startDate="{path: '/startDate'}"
+                        rows="{path: '/people'}"
+                        appointmentsVisualization="Filled"
+                        appointmentHeight="HalfSize"
+                        appointmentSelect="handleAppointmentSelect"
+                        showEmptyIntervalHeaders="false"
+                        showIntervalHeaders="false"
+                        stickyHeader="true"
+                        appointmentRoundWidth="None"
+                        showWeekNumbers="true">
+                        <toolbarContent>
+                            <Title text="{i18n>appTitle1}" titleStyle="H4"/>
+                            <Button
+                            text="{i18n>userHeaderTheme}"
+                            press="onChangeTheme"
+                            icon="sap-icon://palette">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData priority="NeverOverflow"/>
+                                </layoutData>
+                            </Button>
+                        </toolbarContent>
+                        <views>
+                            <PlanningCalendarView
+                            key="3_weeks"
+                            description="3 Weeks"
+                            intervalType="Day"
+                            intervalsS="7"
+                            intervalsM="21"
+                            intervalsL="21">
+                        </PlanningCalendarView>
+                            <PlanningCalendarView
+                            key="1_Month"
+                            description="1 Month"
+                            intervalType="Day"
+                            intervalsS="31"
+                            intervalsM="31"
+                            intervalsL="31">
+                        </PlanningCalendarView>
+                        </views>
+                        <rows>
+                            <PlanningCalendarRow
+                            title="{parts:[{path : 'name'}, {path : 'surname'} ], formatter : '.formatter.getInitials'}" 
+                            text="{role}"
+                            appointments="{path : 'appointments', templateShareable: false}"
+                            intervalHeaders="{path: 'headers', templateShareable: false}">
+                                <appointments>
+                                    <unified:CalendarAppointment
+                                    startDate="{start}"
+                                    endDate="{end}"
+                                    title="{title}"
+                                    text="{info}"
+                                    type="{type}"
+                                    color="{color}"
+                                    tentative="{tentative}">
+                                </unified:CalendarAppointment>
+                                </appointments>
+                                <intervalHeaders>
+                                    <unified:CalendarAppointment
+                                    startDate="{start}"
+                                    endDate="{end}"
+                                    title="{title}"
+                                    type="{type}">
+                                </unified:CalendarAppointment>
+                                </intervalHeaders>
+                            </PlanningCalendarRow>
+                        </rows>
+                    </PlanningCalendar>
+                </ScrollContainer>
+            </content>
+        </Page>
+    </App>
+</mvc:View>
