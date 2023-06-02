@@ -14,7 +14,7 @@ Try <a href="https://kevinbalboni.github.io/openui5-calendar/" target="_blank">L
 - [ ] Appointment Details
 - [ ] Drag & Drop
 - [ ] Export CSV/Excel 
-- [ ] Custom Views (1 Week, 2 Weeks, 3 Weeks, 1 Month)
+- [X] Custom Views (1 Week, 2 Weeks, 3 Weeks, 1 Month)
 - [ ] Filters 
   - [ ] by Project
   - [ ] by Role

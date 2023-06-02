@@ -54,6 +54,7 @@
                         appointmentsVisualization="Filled"
                         appointmentHeight="HalfSize"
                         appointmentSelect="handleAppointmentSelect"
+                        intervalSelect="handleAppointmentAddWithContext"
                         showEmptyIntervalHeaders="false"
                         showIntervalHeaders="false"
                         stickyHeader="true"
@@ -72,28 +73,44 @@
                         </toolbarContent>
                         <views>
                             <PlanningCalendarView
-                            key="3_weeks"
-                            description="3 Weeks"
-                            intervalType="Day"
-                            intervalsS="7"
-                            intervalsM="21"
-                            intervalsL="21">
-                        </PlanningCalendarView>
+                                key="1_weeks"
+                                description="1 Week"
+                                intervalType="Day"
+                                intervalsS="7"
+                                intervalsM="7"
+                                intervalsL="7">
+                            </PlanningCalendarView>
                             <PlanningCalendarView
-                            key="1_Month"
-                            description="1 Month"
-                            intervalType="Day"
-                            intervalsS="31"
-                            intervalsM="31"
-                            intervalsL="31">
-                        </PlanningCalendarView>
+                                key="2_weeks"
+                                description="2 Weeks"
+                                intervalType="Day"
+                                intervalsS="7"
+                                intervalsM="14"
+                                intervalsL="14">
+                            </PlanningCalendarView>
+                            <PlanningCalendarView
+                                key="3_weeks"
+                                description="3 Weeks"
+                                intervalType="Day"
+                                intervalsS="7"
+                                intervalsM="21"
+                                intervalsL="21">
+                            </PlanningCalendarView>
+                            <PlanningCalendarView
+                                key="1_Month"
+                                description="1 Month"
+                                intervalType="Day"
+                                intervalsS="31"
+                                intervalsM="31"
+                                intervalsL="31">
+                            </PlanningCalendarView>
                         </views>
                         <rows>
                             <PlanningCalendarRow
-                            title="{parts:[{path : 'name'}, {path : 'surname'} ], formatter : '.formatter.getInitials'}" 
-                            text="{role}"
-                            appointments="{path : 'appointments', templateShareable: false}"
-                            intervalHeaders="{path: 'headers', templateShareable: false}">
+                                title="{parts:[{path : 'name'}, {path : 'surname'} ], formatter : '.formatter.getInitials'}" 
+                                text="{role}"
+                                appointments="{path : 'appointments', templateShareable: false}"
+                                intervalHeaders="{path: 'headers', templateShareable: false}">
                                 <appointments>
                                     <unified:CalendarAppointment
                                     startDate="{start}"
