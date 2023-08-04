@@ -14,11 +14,10 @@
                             <core:Item key="Gruppo" text="Gruppo Merci" />
                         </Select>
                         <MultiComboBox width="250px" showSelectAll="true">
-                            <core:Item key="" text="CEFLA"/>
                             <core:Item key="" text="Fornitore 1"/>
                             <core:Item key="" text="Fornitore 2"/>
-                            <core:Item key="" text="Lenovo"/>
-                            <core:Item key="" text="Samsung"/>
+                            <core:Item key="" text="Fornitore 3"/>
+                            <core:Item key="" text="Fornitore 4"/>
                         </MultiComboBox>
                     </contentLeft>
                     <contentMiddle>
@@ -51,36 +50,13 @@
                                 <SegmentedButtonItem text="Fatturato" key="FATT" />
                             </items>
                         </SegmentedButton>
+                        <Button text="" icon="sap-icon://journey-change" press="buttonPress"/>
                     </contentRight>
                 </Bar>
             </subHeader>
             <content>
-                <!-- <Panel headerText="Filtri" expandable="true" backgroundDesign="Transparent" >
-                <HBox >
-                    <Select>
-                        <core:Item key="Fornitore" text="Fornitore" />
-                        <core:Item key="Gruppo" text="Gruppo Merci" />
-                    </Select>
-                    <MultiComboBox width="250px">
-                        <core:Item key="" text="CEFLA"/>
-                        <core:Item key="" text="Fornitore 1"/>
-                        <core:Item key="" text="Fornitore 2"/>
-                        <core:Item key="" text="Lenovo"/>
-                        <core:Item key="" text="Samsung"/>
-                    </MultiComboBox>
-                    <RangeSlider min="0" max="100"></RangeSlider>
-                    <SegmentedButton selectedKey="ODA" selectionChange="selectionChange" width="250px">
-                        <items>
-                            <SegmentedButtonItem text="ODA" key="ODA" />
-                            <SegmentedButtonItem text="EM" key="EM" />
-                            <SegmentedButtonItem text="Fatturato" key="FATT" />
-                        </items>
-                    </SegmentedButton>
-                </HBox>
-            </Panel> -->
                 <vbm:AnalyticMap id="vbi" width="100%" xmlns:l="sap.ui.layout" height="100%"
-				initialPosition="0;10;0" regionClick="onRegionClick"
-				regionContextMenu="onRegionContextMenu">
+                                        initialPosition="0;10;0" regionClick="onRegionClick">
                     <vbm:legend>
                         <vbm:Legend caption="ODA">
                             <vbm:LegendItem text="Minore 10k" color="rgb(3, 252, 28)" />
@@ -90,6 +66,40 @@
                         </vbm:Legend>
                     </vbm:legend>
                 </vbm:AnalyticMap>
+                <Table id="table" visible="false" class="sapUiResponsiveContentPadding">
+                    <columns>
+                        <Column>
+                            <Text text="Colonna 1"/>
+                        </Column>
+                        <Column>
+                            <Text text="Colonna 2"/>
+                        </Column>
+                        <Column>
+                            <Text text="Colonna 3"/>
+                        </Column>
+                        <Column>
+                            <Text text="Colonna 4"/>
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <ObjectIdentifier title="1" />
+                                <Text text="ODA" />
+                                <Text text="1456" />
+                                <Text text="1456" />
+                            </cells>
+                        </ColumnListItem>
+                        <ColumnListItem>
+                            <cells>
+                                <ObjectIdentifier title="2" />
+                                <Text text="ODA" />
+                                <Text text="1456" />
+                                <Text text="1456" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
             </content>
         </Page>
     </App>

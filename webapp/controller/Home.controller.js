@@ -12,18 +12,32 @@ sap.ui.define([
 			this.getLogger(this.getControllerName()).info("onInit");
 			BaseController.prototype.onInit.apply(this, arguments);
 
-
 			this.setMapColor(1);
 
 			var oModel = new JSONModel();
 			var oDateENd = new Date();
-			oDateENd.setFullYear(2013);
+			oDateENd.setFullYear(2022);
 
 			oModel.setData({
 				oDRS4Start: oDateENd,
 				oDRS4End: new Date()
 			});
 			this.getView().setModel(oModel);
+		},
+
+		buttonPress: function () {
+
+			if (this.getView().byId("vbi").getVisible() === true) {
+				this.getView().byId("vbi").setVisible(false);
+				this.getView().byId("table").setVisible(true);
+			} else {
+				this.getView().byId("vbi").setVisible(true);
+				this.getView().byId("table").setVisible(false);
+			}
+		},
+
+		onRegionClick: function (oEvent) {
+			sap.m.MessageToast.show("onRegionClick " + oEvent.getParameter("code"));
 		},
 
 		selectionChange: function (oEvent) {
