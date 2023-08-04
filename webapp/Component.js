@@ -1,11 +1,11 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/model/json/JSONModel",
-    "openui5-calendar/model/formatter"
+    "facco-mappa-2/model/formatter"
 ], function (UIComponent, JSONModel, formatter) {
     "use strict";
 
-    return UIComponent.extend("openui5-calendar.Component", {
+    return UIComponent.extend("facco-mappa-2.Component", {
 
         metadata: {
             manifest: "json"

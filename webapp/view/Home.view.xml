@@ -1,139 +1,95 @@
 <mvc:View
-	controllerName="openui5-calendar.controller.Home"
-	xmlns="sap.m"
-	xmlns:l="sap.ui.layout"
-	xmlns:core="sap.ui.core"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:unified="sap.ui.unified"
-    xmlns:f="sap.f"
-    xmlns:card="sap.f.cards" >
+	controllerName="facco-mappa-2.controller.Home"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:vbm="sap.ui.vbm" >
     <App id="app" height="99.5%">
-        <Page showHeader="false">
+        <Page id="page" title="{i18n>title}">
+            <subHeader>
+                <Bar>
+                    <contentLeft>
+                        <Select>
+                            <core:Item key="Fornitore" text="Fornitore" />
+                            <core:Item key="Gruppo" text="Gruppo Merci" />
+                        </Select>
+                        <MultiComboBox width="250px" showSelectAll="true">
+                            <core:Item key="" text="CEFLA"/>
+                            <core:Item key="" text="Fornitore 1"/>
+                            <core:Item key="" text="Fornitore 2"/>
+                            <core:Item key="" text="Lenovo"/>
+                            <core:Item key="" text="Samsung"/>
+                        </MultiComboBox>
+                    </contentLeft>
+                    <contentMiddle>
+                        <!--  <RangeSlider min="0" max="100"></RangeSlider> -->
+                        <DateRangeSelection
+                        id="DRS4"
+                        change="handleChange"
+                        value= "{
+                            'type': 'sap.ui.model.type.DateInterval',
+                            'formatOptions': {
+                                'pattern': 'MM/yyyy'
+                            },
+                            'parts': [
+                                {
+                                    'type': 'sap.ui.model.type.Date',
+                                    'path': '/oDRS4Start'
+                                },
+                                {
+                                    'type': 'sap.ui.model.type.Date',
+                                    'path': '/oDRS4End'
+                                }
+                            ]
+                        }"/>
+                    </contentMiddle>
+                    <contentRight>
+                        <SegmentedButton selectedKey="ODA" selectionChange="selectionChange" width="250px">
+                            <items>
+                                <SegmentedButtonItem text="ODA" key="ODA" />
+                                <SegmentedButtonItem text="EM" key="EM" />
+                                <SegmentedButtonItem text="Fatturato" key="FATT" />
+                            </items>
+                        </SegmentedButton>
+                    </contentRight>
+                </Bar>
+            </subHeader>
             <content>
-                <Panel headerText="Filtri" expandable="true" backgroundDesign="Transparent" >
-                    <HBox width="100%">
-                        <Input type="Text"
-                            value=""
-                            id="filterProgetto"
-                            placeholder="Filtra Progetto"
-                            showValueHelp="true"
-                            valueHelpOnly="true"
-                            valueHelpRequest=".onValueHelpFilter"
-                            class="sapUiSmallMarginBottom"
-                            width="100%"/>
-                        <Input type="Text"
-                            value=""
-                            id="filterCompetenceCenter"
-                            placeholder="Filtra competence center"
-                            showValueHelp="true"
-                            valueHelpOnly="true"
-                            valueHelpRequest=".onValueHelpFilter"
-                            class="sapUiSmallMarginBottom"
-                            width="100%"/>
-                        <Input type="Text"
-                            value=""
-                            id="filterRisorsa"
-                            placeholder="Filtra risorsa"
-                            showValueHelp="true"
-                            valueHelpOnly="true"
-                            valueHelpRequest=".onValueHelpFilter"
-                            class="sapUiSmallMarginBottom"
-                            width="100%"/>
-                    </HBox>
-                </Panel>
-                <ScrollContainer
-                	height="95%"
-                    vertical="true"
-		            width="100%">
-                    <PlanningCalendar 
-                        id="PC1"
-                        height="95%"
-                        viewKey="1_Month"
-                        startDate="{path: '/startDate'}"
-                        rows="{path: '/people'}"
-                        appointmentsVisualization="Filled"
-                        appointmentHeight="HalfSize"
-                        appointmentSelect="handleAppointmentSelect"
-                        intervalSelect="handleAppointmentAddWithContext"
-                        showEmptyIntervalHeaders="false"
-                        showIntervalHeaders="false"
-                        stickyHeader="true"
-                        appointmentRoundWidth="None"
-                        showWeekNumbers="true">
-                        <toolbarContent>
-                            <Title text="{i18n>appTitle1}" titleStyle="H4"/>
-                            <Button
-                            text="{i18n>userHeaderTheme}"
-                            press="onChangeTheme"
-                            icon="sap-icon://palette">
-                                <layoutData>
-                                    <OverflowToolbarLayoutData priority="NeverOverflow"/>
-                                </layoutData>
-                            </Button>
-                        </toolbarContent>
-                        <views>
-                            <PlanningCalendarView
-                                key="1_weeks"
-                                description="1 Week"
-                                intervalType="Day"
-                                intervalsS="7"
-                                intervalsM="7"
-                                intervalsL="7">
-                            </PlanningCalendarView>
-                            <PlanningCalendarView
-                                key="2_weeks"
-                                description="2 Weeks"
-                                intervalType="Day"
-                                intervalsS="7"
-                                intervalsM="14"
-                                intervalsL="14">
-                            </PlanningCalendarView>
-                            <PlanningCalendarView
-                                key="3_weeks"
-                                description="3 Weeks"
-                                intervalType="Day"
-                                intervalsS="7"
-                                intervalsM="21"
-                                intervalsL="21">
-                            </PlanningCalendarView>
-                            <PlanningCalendarView
-                                key="1_Month"
-                                description="1 Month"
-                                intervalType="Day"
-                                intervalsS="31"
-                                intervalsM="31"
-                                intervalsL="31">
-                            </PlanningCalendarView>
-                        </views>
-                        <rows>
-                            <PlanningCalendarRow
-                                title="{parts:[{path : 'name'}, {path : 'surname'} ], formatter : '.formatter.getInitials'}" 
-                                text="{role}"
-                                appointments="{path : 'appointments', templateShareable: false}"
-                                intervalHeaders="{path: 'headers', templateShareable: false}">
-                                <appointments>
-                                    <unified:CalendarAppointment
-                                    startDate="{start}"
-                                    endDate="{end}"
-                                    title="{title}"
-                                    text="{info}"
-                                    type="{type}"
-                                    color="{color}"
-                                    tentative="{tentative}">
-                                </unified:CalendarAppointment>
-                                </appointments>
-                                <intervalHeaders>
-                                    <unified:CalendarAppointment
-                                    startDate="{start}"
-                                    endDate="{end}"
-                                    title="{title}"
-                                    type="{type}">
-                                </unified:CalendarAppointment>
-                                </intervalHeaders>
-                            </PlanningCalendarRow>
-                        </rows>
-                    </PlanningCalendar>
-                </ScrollContainer>
+                <!-- <Panel headerText="Filtri" expandable="true" backgroundDesign="Transparent" >
+                <HBox >
+                    <Select>
+                        <core:Item key="Fornitore" text="Fornitore" />
+                        <core:Item key="Gruppo" text="Gruppo Merci" />
+                    </Select>
+                    <MultiComboBox width="250px">
+                        <core:Item key="" text="CEFLA"/>
+                        <core:Item key="" text="Fornitore 1"/>
+                        <core:Item key="" text="Fornitore 2"/>
+                        <core:Item key="" text="Lenovo"/>
+                        <core:Item key="" text="Samsung"/>
+                    </MultiComboBox>
+                    <RangeSlider min="0" max="100"></RangeSlider>
+                    <SegmentedButton selectedKey="ODA" selectionChange="selectionChange" width="250px">
+                        <items>
+                            <SegmentedButtonItem text="ODA" key="ODA" />
+                            <SegmentedButtonItem text="EM" key="EM" />
+                            <SegmentedButtonItem text="Fatturato" key="FATT" />
+                        </items>
+                    </SegmentedButton>
+                </HBox>
+            </Panel> -->
+                <vbm:AnalyticMap id="vbi" width="100%" xmlns:l="sap.ui.layout" height="100%"
+				initialPosition="0;10;0" regionClick="onRegionClick"
+				regionContextMenu="onRegionContextMenu">
+                    <vbm:legend>
+                        <vbm:Legend caption="ODA">
+                            <vbm:LegendItem text="Minore 10k" color="rgb(3, 252, 28)" />
+                            <vbm:LegendItem text="10k - 50k" color="rgb(112, 255, 127)" />
+                            <vbm:LegendItem text="50k - 100k" color="rgb(160, 250, 169)" />
+                            <vbm:LegendItem text="Oltre 100k" color="rgb(196, 242, 201)" />
+                        </vbm:Legend>
+                    </vbm:legend>
+                </vbm:AnalyticMap>
             </content>
         </Page>
     </App>

@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (Controller, History, Log) {
 	"use strict";
 
-	return Controller.extend("openui5-calendar.controller.BaseController", {
+	return Controller.extend("facco-mappa-2.controller.BaseController", {
 		_oLogger: null,
 
 		onInit: function () {
