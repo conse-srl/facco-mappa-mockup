@@ -66,7 +66,7 @@
                         </vbm:Legend>
                     </vbm:legend>
                 </vbm:AnalyticMap>
-                <Table id="table" visible="false" class="sapUiResponsiveContentPadding">
+                <Table id="table" visible="false" class="sapUiResponsiveContentPadding" headerText="Fornitori">
                     <columns>
                         <Column>
                             <Text text="Colonna 1"/>
