@@ -22,7 +22,7 @@
                     </contentLeft>
                     <contentMiddle>
                         <!--  <RangeSlider min="0" max="100"></RangeSlider> -->
-                        <DateRangeSelection
+                        <!-- <DateRangeSelection
                         id="DRS4"
                         change="handleChange"
                         value= "{
@@ -40,7 +40,13 @@
                                     'path': '/oDRS4End'
                                 }
                             ]
-                        }"/>
+                        }"/> -->
+                        <Label text="Funzione data relativa" width="100%"/>
+                        <Input
+                            value="PREVIOUSYEARTODATE"
+                            valueHelpRequest=".onValueHelpRequest"
+                            showValueHelp="true">
+                        </Input>
                     </contentMiddle>
                     <contentRight>
                         <SegmentedButton selectedKey="ODA" selectionChange="selectionChange" width="250px">

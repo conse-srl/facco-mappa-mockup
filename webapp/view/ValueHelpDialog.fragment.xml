@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <SelectDialog id="selectDialog" title="Date">
+        <StandardListItem title="PREVIOUS365DAYS" description="365 giorni precedenti" />
+        <StandardListItem title="PREVIOUS3DAYS" description="3 giorni precedenti" />
+        <StandardListItem title="PREVIOUS7DAYS" description="7 giorni precedenti" />
+        <StandardListItem title="PREVIOUS90DAYS" description="90 giorni precedenti" />
+        <StandardListItem title="PREVIOUSMONTH" description="Mese precedente" />
+    </SelectDialog>
+</core:FragmentDefinition>

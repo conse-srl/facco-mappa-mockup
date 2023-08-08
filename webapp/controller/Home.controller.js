@@ -1,8 +1,9 @@
 sap.ui.define([
 	"facco-mappa-2/controller/BaseController",
 	"facco-mappa-2/model/formatter",
-	"sap/ui/model/json/JSONModel"
-], function (BaseController, formatter, JSONModel) {
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/core/Fragment"
+], function (BaseController, formatter, JSONModel, Fragment) {
 	"use strict";
 
 	return BaseController.extend("facco-mappa-2.controller.Home", {
@@ -34,6 +35,28 @@ sap.ui.define([
 				this.getView().byId("vbi").setVisible(true);
 				this.getView().byId("table").setVisible(false);
 			}
+		},
+
+		onValueHelpRequest: function (oEvent) {
+			var sInputValue = oEvent.getSource().getValue(),
+				oView = this.getView();
+
+			if (!this._pValueHelpDialog) {
+				this._pValueHelpDialog = Fragment.load({
+					id: oView.getId(),
+					name: "facco-mappa-2.view.ValueHelpDialog",
+					controller: this
+				}).then(function (oDialog) {
+					oView.addDependent(oDialog);
+					return oDialog;
+				});
+			}
+			this._pValueHelpDialog.then(function (oDialog) {
+				// Create a filter for the binding
+				//oDialog.getBinding("items").filter([]);
+				// Open ValueHelpDialog filtered by the input's value
+				oDialog.open(sInputValue);
+			});
 		},
 
 		onRegionClick: function (oEvent) {
